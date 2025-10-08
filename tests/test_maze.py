@@ -1,4 +1,8 @@
-from src.maze import find_path
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
+
+from maze import find_path
 
 # ---- Normal (4) ----
 def test_trivial_start_is_end():
@@ -46,9 +50,10 @@ def test_no_path_maze():
         [0,1,0,0],
         [0,1,0,1],
         [0,1,0,1],
-        [0,0,0,1],
+        [0,0,1,1],  # block the end cell
     ]
     assert find_path(g, (0,0), (3,2)) is None
+
 
 def test_large_open_grid_diag_distance():
     n = 10
